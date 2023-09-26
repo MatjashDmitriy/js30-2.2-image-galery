@@ -1,7 +1,42 @@
 const input = document.getElementById('input');
 const grid = document.getElementsByClassName('grid')[0];
 const header = document.getElementById('header');
+const clearInput = document.getElementById('clear-input');
 
+
+// LOAD RANDOM IMG
+function loadRandomImages() {
+    removeImages();
+
+    const randomPage = Math.floor(Math.random() * 10) + 1; 
+
+    const url = `https://api.unsplash.com/photos/?page=${randomPage}&per_page=9&client_id=F7siWtiFq4YZXSrdJ7nuaBic8xnwh_qgcXbVUMBPTVw`;
+
+    fetch(url)
+        .then(response => {
+            if (response.ok)
+                return response.json();
+            else {
+                alert(response.status);
+            }
+        })
+        .then(data => {
+            const imageNodes = [];
+            for (let i = 0; i < data.length; i++) {
+                imageNodes[i] = document.createElement('div');
+                imageNodes[i].className = 'img';
+                imageNodes[i].style.backgroundImage = 'url(' + data[i].urls.raw + ')';
+                imageNodes[i].addEventListener('dblclick', function () {
+                    window.open(data[i].links.download, '_blank')
+                });
+                grid.appendChild(imageNodes[i]);
+            }
+        });
+
+        input.focus();
+}
+
+loadRandomImages();
 
 // SEARCH IF ENTER IS PRESSED
 input.addEventListener('keydown', function(event) {
