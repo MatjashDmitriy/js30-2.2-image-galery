@@ -44,3 +44,15 @@ function loadImg() {
 function removeImages() {
     grid.innerHTML = '';
 }
+
+// DISPLAY OR HIDE THE CROSS IN THE INPUT
+input.addEventListener('input', () => {
+    clearInput.style.display = input.value.length > 0 ? 'block' : 'none';
+});
+
+// CLEAR INPUT
+clearInput.addEventListener('click', () => {
+    input.value = '';
+    clearInput.style.display = 'none';
+    input.focus(); 
+});
