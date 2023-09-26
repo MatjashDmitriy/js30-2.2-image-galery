@@ -3,6 +3,8 @@ const grid = document.getElementsByClassName('grid')[0];
 const header = document.getElementById('header');
 const clearInput = document.getElementById('clear-input');
 
+console.log('Требования\n\n1.Вёрстка +10\n2.При загрузке приложения на странице отображаются полученные от API изображения +10\n3.Если в поле поиска ввести слово и отправить поисковый запрос, на странице отобразятся изображения соответствующей тематики, если такие данные предоставляет API +10\n4.Поиск +30\n5.Качество оформления приложения предполагает собственное оригинальное оформление равное или отличающееся в лучшую сторону по сравнению с демо +10\n\nОбщий бал 70/60')
+
 
 // LOAD RANDOM IMG
 function loadRandomImages() {
@@ -17,7 +19,7 @@ function loadRandomImages() {
             if (response.ok)
                 return response.json();
             else {
-                alert(response.status);
+                console.log(response.status);
             }
         })
         .then(data => {
